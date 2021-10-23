@@ -28,7 +28,7 @@ Additionally, the service can handle a string of correctly ordered full names se
 
 ## Installation
 The application requires the following tools:
-- Java 11 or higher
+- Java 8 or higher
 - Apache Maven
 
 Install relevant libraries through maven
