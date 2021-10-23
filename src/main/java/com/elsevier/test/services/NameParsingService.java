@@ -1,10 +1,12 @@
 package com.elsevier.test.services;
 
+import com.elsevier.test.exceptions.TooFewNamesException;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 public interface NameParsingService {
 
-    JSONObject parsePersonNames(String person);
+    JSONObject parsePersonNames(String person) throws TooFewNamesException;
 
-    JSONObject parsePersonListNames(String personList);
+    JSONArray parsePersonListNames(String personList) throws TooFewNamesException;
 }

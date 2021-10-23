@@ -1,6 +1,8 @@
 package com.elsevier.test.controllers;
 
+import com.elsevier.test.exceptions.TooFewNamesException;
 import com.elsevier.test.services.NameParsingService;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,11 +25,21 @@ public class NameParsingController {
 
     @GetMapping("/normalisePersonName")
     public ResponseEntity<JSONObject> normalisePersonName(@RequestParam String person){
-        return new ResponseEntity<>(service.parsePersonNames(person), HttpStatus.OK);
+        try {
+            return new ResponseEntity<>(service.parsePersonNames(person), HttpStatus.OK);
+        } catch (TooFewNamesException e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity<>(new JSONObject(), HttpStatus.NOT_ACCEPTABLE);
     }
 
     @GetMapping("/normalisePersonListNames")
-    public ResponseEntity<JSONObject> normalisePersonListNames(@RequestParam String personList){
-        return new ResponseEntity<>(service.parsePersonListNames(personList), HttpStatus.OK);
+    public ResponseEntity<JSONArray> normalisePersonListNames(@RequestParam String personList){
+        try {
+            return new ResponseEntity<>(service.parsePersonListNames(personList), HttpStatus.OK);
+        } catch (TooFewNamesException e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity<>(new JSONArray(), HttpStatus.NOT_ACCEPTABLE);
     }
 }
