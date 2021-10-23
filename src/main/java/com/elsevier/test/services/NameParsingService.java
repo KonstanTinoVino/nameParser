@@ -8,5 +8,5 @@ public interface NameParsingService {
 
     JSONObject parsePersonNames(String person) throws TooFewNamesException;
 
-    JSONArray parsePersonListNames(String personList) throws TooFewNamesException;
+    JSONArray parsePersonListNames(String personList);
 }

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/service/parsing")
 public class NameParsingController {
 
-    private NameParsingService service;
+    private final NameParsingService service;
 
     @Autowired
     public NameParsingController(NameParsingService service) {
@@ -24,22 +24,22 @@ public class NameParsingController {
     }
 
     @GetMapping("/normalisePersonName")
-    public ResponseEntity<JSONObject> normalisePersonName(@RequestParam String person){
+    public ResponseEntity<String> normalisePersonName(@RequestParam String person){
         try {
-            return new ResponseEntity<>(service.parsePersonNames(person), HttpStatus.OK);
+            return new ResponseEntity<>(service.parsePersonNames(person).toString(), HttpStatus.OK);
         } catch (TooFewNamesException e) {
             e.printStackTrace();
         }
-        return new ResponseEntity<>(new JSONObject(), HttpStatus.NOT_ACCEPTABLE);
+        return new ResponseEntity<>(new JSONObject().toString(), HttpStatus.NOT_ACCEPTABLE);
     }
 
     @GetMapping("/normalisePersonListNames")
-    public ResponseEntity<JSONArray> normalisePersonListNames(@RequestParam String personList){
-        try {
-            return new ResponseEntity<>(service.parsePersonListNames(personList), HttpStatus.OK);
-        } catch (TooFewNamesException e) {
-            e.printStackTrace();
-        }
-        return new ResponseEntity<>(new JSONArray(), HttpStatus.NOT_ACCEPTABLE);
+    public ResponseEntity<String> normalisePersonListNames(@RequestParam String personList){
+        JSONArray array = service.parsePersonListNames(personList);
+
+        if (!array.isEmpty())
+        return new ResponseEntity<>(service.parsePersonListNames(personList).toString(), HttpStatus.OK);
+
+        return new ResponseEntity<>(new JSONArray().toString(), HttpStatus.NOT_ACCEPTABLE);
     }
 }
