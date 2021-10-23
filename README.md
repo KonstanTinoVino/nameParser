@@ -39,7 +39,7 @@ nameDisambiguation\src\main\java\com\elsevier\test\main\NameDisambiguationApplic
 ```
 
 ## Usage
-The application functionalities of the application can be accessed through the NameParsingService.java interface if the module is integrated as part of another application. Alternatively if ran as a spring booth application it can be accessed via the rest service running on localhost:8080.
+The functionalities of the application can be accessed through the NameParsingService.java interface if the module is integrated as part of another application. Alternatively if ran as a spring booth application it can be accessed via the rest service running on localhost:8080.
 
 The two endpoints with examples of usage are
 
