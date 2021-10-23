@@ -1,4 +1,4 @@
-# Name Parser Implementation
+# Name Parser Spring Module
 
 Implementation of service that is able to parse a string of a single person's name  or multiple persons' names and provide a result where it is derived what is first name(s) and what is the last name.
 
@@ -27,6 +27,9 @@ Additionally, the service can handle a string of correctly ordered full names se
 
 
 ## Installation
+The application requires the following tools:
+- Java 11 or higher
+- Apache Maven
 
 Install relevant libraries through maven
 
