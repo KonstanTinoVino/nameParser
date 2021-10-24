@@ -37,6 +37,7 @@ public class NameParsingController {
     public ResponseEntity<String> normalisePersonListNames(@RequestParam String personList){
         JSONArray array = service.normalisePersonListNames(personList);
 
+        // If some names are invalid and others invalid still return a list of the valid ones and disregard the rest.
         if (!array.isEmpty())
             return new ResponseEntity<>(array.toString(), HttpStatus.OK);
 
