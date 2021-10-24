@@ -6,7 +6,7 @@ import org.json.JSONObject;
 
 public interface NameParsingService {
 
-    JSONObject parsePersonNames(String person) throws TooFewNamesException;
+    JSONObject normalisePersonName(String person) throws TooFewNamesException;
 
-    JSONArray parsePersonListNames(String personList);
+    JSONArray normalisePersonListNames(String personList);
 }

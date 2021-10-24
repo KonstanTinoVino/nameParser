@@ -14,12 +14,12 @@ public class NameParsingServiceImplementation implements NameParsingService {
 
 
     @Override
-    public JSONObject parsePersonNames(String person) throws TooFewNamesException {
+    public JSONObject normalisePersonName(String person) throws TooFewNamesException {
         return new JSONObject(disambiguatePerson(person));
     }
 
     @Override
-    public JSONArray parsePersonListNames(String personList) {
+    public JSONArray normalisePersonListNames(String personList) {
         String[] personNames = personList.split(",");
         JSONArray jasonArray = new JSONArray();
         for (String person : personNames) {

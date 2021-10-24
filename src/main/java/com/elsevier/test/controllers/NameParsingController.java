@@ -26,7 +26,7 @@ public class NameParsingController {
     @GetMapping("/normalisePersonName")
     public ResponseEntity<String> normalisePersonName(@RequestParam String person){
         try {
-            return new ResponseEntity<>(service.parsePersonNames(person).toString(), HttpStatus.OK);
+            return new ResponseEntity<>(service.normalisePersonName(person).toString(), HttpStatus.OK);
         } catch (TooFewNamesException e) {
             e.printStackTrace();
         }
@@ -35,10 +35,10 @@ public class NameParsingController {
 
     @GetMapping("/normalisePersonListNames")
     public ResponseEntity<String> normalisePersonListNames(@RequestParam String personList){
-        JSONArray array = service.parsePersonListNames(personList);
+        JSONArray array = service.normalisePersonListNames(personList);
 
         if (!array.isEmpty())
-        return new ResponseEntity<>(service.parsePersonListNames(personList).toString(), HttpStatus.OK);
+            return new ResponseEntity<>(array.toString(), HttpStatus.OK);
 
         return new ResponseEntity<>(new JSONArray().toString(), HttpStatus.NOT_ACCEPTABLE);
     }

@@ -23,43 +23,43 @@ public class NameParsinServiceTest {
     @Test
     void testSinglePersonParsing() throws TooFewNamesException, JSONException {
         String name = "John Doe";
-        JSONObject object = service.parsePersonNames(name);
+        JSONObject object = service.normalisePersonName(name);
         JSONAssert.assertEquals("{\"firstName\":\"John\",\"lastName\":\"Doe\"}", object, false);
 
         name = "Doe, John";
-        object = service.parsePersonNames(name);
+        object = service.normalisePersonName(name);
         JSONAssert.assertEquals("{\"firstName\":\"John\",\"lastName\":\"Doe\"}", object, false);
 
         name = "Hans-Christian Jensen";
-        object = service.parsePersonNames(name);
+        object = service.normalisePersonName(name);
         JSONAssert.assertEquals("{\"firstName\":\"Hans-Christian\",\"lastName\":\"Jensen\"}", object, false);
 
         name = "H-C Jensen";
-        object = service.parsePersonNames(name);
+        object = service.normalisePersonName(name);
         JSONAssert.assertEquals("{\"firstName\":\"H-C\",\"lastName\":\"Jensen\"}", object, false);
 
 
         name = "P. H. Kristensen";
-        object = service.parsePersonNames(name);
+        object = service.normalisePersonName(name);
         JSONAssert.assertEquals("{\"firstName\":\"P. H.\",\"lastName\":\"Kristensen\"}", object, false);
 
         name = "Kristensen, P. H.";
-        object = service.parsePersonNames(name);
+        object = service.normalisePersonName(name);
         JSONAssert.assertEquals("{\"firstName\":\"P. H.\",\"lastName\":\"Kristensen\"}", object, false);
 
         name = "Peter Hans Kristensen";
-        object = service.parsePersonNames(name);
+        object = service.normalisePersonName(name);
         JSONAssert.assertEquals("{\"firstName\":\"Peter Hans\",\"lastName\":\"Kristensen\"}", object, false);
 
         name = "Peter H. Kristensen";
-        object = service.parsePersonNames(name);
+        object = service.normalisePersonName(name);
         JSONAssert.assertEquals("{\"firstName\":\"Peter H.\",\"lastName\":\"Kristensen\"}", object, false);
     }
 
     @Test
     void testMultiPersonParsing() throws JSONException {
         String names = "H-C Jensen, Peter Hans Kristensen, John Doe";
-        JSONArray object = service.parsePersonListNames(names);
+        JSONArray object = service.normalisePersonListNames(names);
         JSONAssert.assertEquals("[{\"firstName\":\"H-C\",\"lastName\":\"Jensen\"},{\"firstName\":\"Peter Hans\",\"lastName\":\"Kristensen\"},{\"firstName\":\"John\",\"lastName\":\"Doe\"}]", object, false);
     }
 
